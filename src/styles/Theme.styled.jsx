@@ -1,4 +1,4 @@
-export const light = {
+export const theme = {
   name: 'light-mode',
   colors: {
     mainLightColor: 'EBD8FF',

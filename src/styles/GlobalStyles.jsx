@@ -1,6 +1,8 @@
-import { css } from '@emotion/react';
+import { css } from "@emotion/react";
 
 export const GlobalStyles = css`
+  @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap");
+
   html {
     box-sizing: border-box;
     width: 100vw;
@@ -13,8 +15,8 @@ export const GlobalStyles = css`
   }
   body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-      Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
     color: #212121;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -52,7 +54,7 @@ export const GlobalStyles = css`
     height: auto;
   }
   code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
       monospace;
   }
 `;

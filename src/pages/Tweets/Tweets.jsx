@@ -1,4 +1,4 @@
-import TweetsGallery from "components/TweetsGallary/TweetsGallery";
+import TweetsGallery from "components/TweetsGallery/TweetsGallery";
 
 function Tweets() {
   return <TweetsGallery />;

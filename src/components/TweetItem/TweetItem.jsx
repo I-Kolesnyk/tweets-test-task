@@ -1,6 +1,14 @@
 import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 
 import { useUpdateUserMutation } from "redux/users/usersApi";
+import {
+  setLocalStorage,
+  getLocalStorage,
+  getCounter,
+  formatNumber,
+} from "helpers";
+
 import logo from "../../assets/logo.svg";
 import {
   Item,
@@ -15,79 +23,68 @@ import {
 } from "./TweetItem.styled";
 
 function TweetItem({ userData: { id, avatar, user, tweets, followers } }) {
-  const [status, setStatus] = useState(
-    localStorage.getItem(`${id}`) || "follow"
-  );
-  const [updateUser] = useUpdateUserMutation();
+  const [status, setStatus] = useState(getLocalStorage(id) || "follow");
+  const [updateUser, {isError}] = useUpdateUserMutation();
+  const currentStatus = getLocalStorage(id);
 
+  useEffect(() => {
+    setLocalStorage(id, status);
+  });
 
-  useEffect (() => {
-    localStorage.setItem(`${id}`, status)
-  })
-
-  const getCounter = (followers) => {
-    if (status === "follow") {
-      return followers + 1;
+  useEffect(() => {
+    if (isError) {
+      toast.error("Something has happened. Please try again later.");
     }
-    if (status === "following") {
-      return followers - 1;
-    } else {
-      return followers;
-    }
-  };
-
-  const currentStatus = localStorage.getItem(`${id}`);
+  }, [isError]);
 
   const userData = {
     user,
     tweets,
     avatar,
-    followers: getCounter(followers),
+    followers: getCounter(status, followers),
     id,
   };
 
   const handleClick = (tweetId, user) => {
     if (currentStatus === null) {
       setStatus("following");
-      localStorage.setItem(`${tweetId}`, "following");
+      setLocalStorage(tweetId, "following");
       updateUser(user);
     }
     if (currentStatus === "following") {
       setStatus("follow");
-      localStorage.setItem(`${tweetId}`, "follow");
+      setLocalStorage(tweetId, "follow");
       updateUser(user);
     }
     if (currentStatus === "follow") {
       setStatus("following");
-      localStorage.setItem(`${tweetId}`, "following");
+      setLocalStorage(tweetId, "following");
       updateUser(user);
     }
   };
 
-  function format(followers) {
-    const n = followers.toString().split(".");
-    return (
-      n[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",") +
-      (n.length > 1 ? "." + n[1] : "")
-    );
-  }
-
   return (
     <Item>
       <ItemWrapper>
-      <Logo src={logo} alt="go-it logo" />
-      <AvatarContainer>
-        <AvatarWrapper>
-          <Avatar src={avatar} alt={user} />
-        </AvatarWrapper>
-      </AvatarContainer>
-      <TextWrapper>
-        <Text>{tweets} tweets</Text>
-        <Text>{format(followers)} followers</Text>
-      </TextWrapper>
-      <Button type="button" onClick={() => handleClick(id, userData)} style={{backgroundColor : status==='following' ? '#5CD3A8' : '#EBD8FF'}}>
-        {status}
-      </Button>
+        <Logo src={logo} alt="go-it logo" />
+        <AvatarContainer>
+          <AvatarWrapper>
+            <Avatar src={avatar} alt={user} />
+          </AvatarWrapper>
+        </AvatarContainer>
+        <TextWrapper>
+          <Text>{formatNumber(tweets)} tweets</Text>
+          <Text>{formatNumber(followers)} followers</Text>
+        </TextWrapper>
+        <Button
+          type="button"
+          onClick={() => handleClick(id, userData)}
+          style={{
+            backgroundColor: status === "following" ? "#5CD3A8" : "#EBD8FF",
+          }}
+        >
+          {status}
+        </Button>
       </ItemWrapper>
     </Item>
   );

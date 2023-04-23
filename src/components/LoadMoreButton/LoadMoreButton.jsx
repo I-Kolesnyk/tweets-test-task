@@ -1,16 +1,14 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
-import {
-  selectTweetsPerPage,
-  selectCurrentPage,
-} from "redux/pagination/selectors";
+import { useTweetsAmount, useCurrentPage } from "hooks";
 import { setTweetsPerPage, setCurrentPage } from "redux/pagination/slice";
 import { setFilter } from "redux/filter/slice";
 
+import { LoadMoreBtn, Wrapper } from "./LoadMoreButton.styled";
+
 function LoadMoreButton() {
-  //   const filteredUsers = useSelector(selectFilteredUsers);
-  const tweetsAmount = useSelector(selectTweetsPerPage);
-  const currentPage = useSelector(selectCurrentPage);
+  const tweetsAmount = useTweetsAmount();
+  const currentPage = useCurrentPage();
   const dispatch = useDispatch();
 
   const handleLoadMore = (number, page) => {
@@ -20,7 +18,9 @@ function LoadMoreButton() {
   };
 
   return (
-    <button onClick={() => handleLoadMore(tweetsAmount, currentPage)}>Load more</button>
+    <Wrapper>
+    <LoadMoreBtn onClick={() => handleLoadMore(tweetsAmount, currentPage)}>Load more</LoadMoreBtn>
+    </Wrapper>
   );
 }
 

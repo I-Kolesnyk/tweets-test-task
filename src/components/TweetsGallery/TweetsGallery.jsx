@@ -1,41 +1,46 @@
-import { useFetchAllUsersQuery } from "redux/users/usersApi";
-
-import TweetItem from "components/TweetItem/TweetItem";
-import LoadMoreButton from "components/LoadMoreButton";
-import { List } from "./TweetsGallery.styled";
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+
+import { useFetchUsersQuery } from "redux/users/usersApi";
 import {
   setAllUsers,
   setShownUsers,
   setTotalPages,
 } from "redux/pagination/slice";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  selectAllUsers,
-  selectFilteredUsers,
-  selectTweetsPerPage,
-  selectTotalPages,
-  selectCurrentPage
-} from "redux/pagination/selectors";
 
-import { selectFilterValue } from "redux/filter/selectors";
+import {
+  useAllUsers,
+  useTotalPages,
+  useTweetsAmount,
+  useCurrentPage,
+  useFilterValue,
+  useFilteredUsers,
+} from "hooks";
+
+import TweetItem from "components/TweetItem/TweetItem";
+import LoadMoreButton from "components/LoadMoreButton";
+import Loader from "components/Loader";
+import { ToastWrapper } from "components/ToastContainer/ToastContainer";
+
+import { List, Wrapper, Title } from "./TweetsGallery.styled";
 
 function TweetsGallery() {
-  const { data } = useFetchAllUsersQuery();
+  const { data, isFetching, isError, isSuccess } = useFetchUsersQuery();
+  const allUsers = useAllUsers();
+  const totalPages = useTotalPages();
+  const tweetsAmount = useTweetsAmount();
+  const currentPage = useCurrentPage();
+  const filter = useFilterValue();
+  const filteredUsers = useFilteredUsers();
+
   const dispatch = useDispatch();
-  const tweetsAmount = useSelector(selectTweetsPerPage);
-  const totalPages = useSelector(selectTotalPages);
-  const currentPage = useSelector(selectCurrentPage);
-  const filter = useSelector(selectFilterValue)
 
   useEffect(() => {
     if (data) {
       dispatch(setAllUsers(data));
     }
   }, [data, dispatch]);
-
-  const allUsers = useSelector(selectAllUsers);
-  const filteredUsers = useSelector(selectFilteredUsers);
 
   useEffect(() => {
     if (allUsers) {
@@ -45,15 +50,36 @@ function TweetsGallery() {
     }
   }, [allUsers, dispatch, tweetsAmount]);
 
+  useEffect(() => {
+    if (isError) {
+      toast.error("Something has happened. Please try again later.");
+    }
+  }, [isError]);
+
   return (
     <>
-      <List>
-        {filteredUsers &&
-          filteredUsers.map((userData) => {
-            return <TweetItem key={userData.id} userData={userData} />;
-          })}
-      </List>
-      {(totalPages > 1 && currentPage < totalPages && filter === 'all') && <LoadMoreButton />}
+      {isFetching && <Loader />}
+
+      {isSuccess && data.length ? (
+        <List>
+          {filteredUsers &&
+            filteredUsers.map((userData) => {
+              return <TweetItem key={userData.id} userData={userData} />;
+            })}
+        </List>
+      ) : (
+        <Wrapper>
+          <Title>
+            Great! You are the first user! <br/> Wait for a little for someone to join
+            you.
+          </Title>
+        </Wrapper>
+      )}
+
+      {totalPages > 1 && currentPage < totalPages && filter === "all" && (
+        <LoadMoreButton />
+      )}
+      <ToastWrapper />
     </>
   );
 }

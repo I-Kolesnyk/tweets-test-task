@@ -1,0 +1,1 @@
+export const getLocalStorage = (param1) => localStorage.getItem(`${param1}`);

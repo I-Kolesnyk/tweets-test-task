@@ -1,11 +1,11 @@
-import { TailSpin } from 'react-loader-spinner';
+import { Hearts } from 'react-loader-spinner';
 
 import { StyledLoader } from './Loader.styled';
 
 const Loader = () => {
   return (
     <StyledLoader>
-      <TailSpin />
+      <Hearts color="#471ca9"/>
     </StyledLoader>
   );
 };

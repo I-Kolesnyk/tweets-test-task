@@ -7,9 +7,8 @@ import NavButton from "components/NavButton";
 import DropDownFilter from "components/DropDownFilter/DropDownFilter";
 
 import { GlobalStyles } from "styles/GlobalStyles";
-import { BackIcon, TweetIcon } from "./Layout.styled";
-import { theme } from "styles/Theme.styled";
-import { HeaderContainer, Header, Main, Title } from "./Layout.styled";
+import { theme } from "styles/theme";
+import { HeaderContainer, Header, Main, Title, BackIcon, TweetIcon } from "./Layout.styled";
 
 function Layout() {
   const { state, pathname } = useLocation();

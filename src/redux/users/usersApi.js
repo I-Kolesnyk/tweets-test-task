@@ -8,8 +8,13 @@ export const usersApi = createApi({
   tegTypes: ["Users"],
 
   endpoints: (builder) => ({
+    fetchAllUsers: builder.query({
+      query: () => `/users`,
+      providesTags: ["Users"],
+    }),
+
     fetchUsers: builder.query({
-      query: (page = 1) => `/users?page=${page}&limit=3`,
+      query: (searchParams) => `/users?${searchParams}&limit=3`,
       providesTags: ["Users"],
     }),
 
@@ -24,8 +29,4 @@ export const usersApi = createApi({
   }),
 });
 
-export const {
-  useFetchUsersQuery,
-  useUpdateUserMutation,
-  useDeleteContactMutation,
-} = usersApi;
+export const { useFetchAllUsersQuery, useFetchUsersQuery, useUpdateUserMutation } = usersApi;

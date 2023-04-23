@@ -13,6 +13,7 @@ import {
 import storage from "redux-persist/lib/storage";
 
 import { filterSlice } from "./filter/slice";
+import { paginationSlice } from "./pagination/slice";
 import { usersApi } from "./users/usersApi";
 
 const filterPersistConfig = {
@@ -21,9 +22,16 @@ const filterPersistConfig = {
   whitelist: ['value']
 };
 
+const paginationPersistConfig = {
+  key: 'pagination',
+  storage,
+
+};
+
 export const store = configureStore({
   reducer: {
     [usersApi.reducerPath]: usersApi.reducer,
+    pagination:persistReducer(paginationPersistConfig, paginationSlice.reducer)  ,
     filter: persistReducer(filterPersistConfig, filterSlice.reducer) ,
   },
   middleware: (getDefaultMiddleware) =>

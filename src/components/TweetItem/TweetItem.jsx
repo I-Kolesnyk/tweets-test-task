@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { useUpdateUserMutation } from "redux/users/usersApi";
 import logo from "../../assets/logo.svg";
@@ -19,6 +19,11 @@ function TweetItem({ userData: { id, avatar, user, tweets, followers } }) {
     localStorage.getItem(`${id}`) || "follow"
   );
   const [updateUser] = useUpdateUserMutation();
+
+
+  useEffect (() => {
+    localStorage.setItem(`${id}`, status)
+  })
 
   const getCounter = (followers) => {
     if (status === "follow") {

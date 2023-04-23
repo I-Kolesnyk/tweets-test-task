@@ -1,22 +1,27 @@
+import { useSelector, useDispatch } from "react-redux";
+
+import {
+  selectTweetsPerPage,
+  selectCurrentPage,
+} from "redux/pagination/selectors";
+import { setTweetsPerPage, setCurrentPage } from "redux/pagination/slice";
+import { setFilter } from "redux/filter/slice";
+
 function LoadMoreButton() {
+  //   const filteredUsers = useSelector(selectFilteredUsers);
+  const tweetsAmount = useSelector(selectTweetsPerPage);
+  const currentPage = useSelector(selectCurrentPage);
+  const dispatch = useDispatch();
 
+  const handleLoadMore = (number, page) => {
+    dispatch(setTweetsPerPage(number + 3));
+    dispatch(setCurrentPage(page + 1));
+    dispatch(setFilter('all'));
+  };
 
-  //   const handleLoadMore = (limit) => {
-  //     try {
-  //       setTweetsPerPage(tweetsPerPage + 3)
-  //       console.log(searchParams);
-  //       setSearchParams({ limit: limit + 3 });
-  //       setTweetsPerPage(limit + 3)
-  //       // setPage(currentPage + 1);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-
-//   setUsers(users);
-
-
-  return <button>Load more</button>;
+  return (
+    <button onClick={() => handleLoadMore(tweetsAmount, currentPage)}>Load more</button>
+  );
 }
 
 export default LoadMoreButton;

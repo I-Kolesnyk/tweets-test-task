@@ -6,7 +6,8 @@ const listDynamicStyle = ({ theme }) => css`
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    gap: 30px;
+    column-gap: 100px;
+    row-gap: 30px;
 `
 export const List = styled.ul`
 ${listDynamicStyle}

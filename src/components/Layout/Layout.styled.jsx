@@ -29,9 +29,9 @@ const mainDynamicStyle = ({ theme }) => css`
 `;
 
 const titleDynamicStyle = ({ theme }) => css`
-margin: 0;
+  margin: 0;
   color: #471ca9;
-  font-family: "Montserrat";  
+  font-family: "Montserrat";
   font-weight: 600;
   font-size: 38px;
   line-height: 1.2;
@@ -59,5 +59,5 @@ export const Main = styled.main`
 `;
 
 export const Title = styled.h1`
-    ${titleDynamicStyle}
-`
+  ${titleDynamicStyle}
+`;

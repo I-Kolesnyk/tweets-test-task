@@ -6,7 +6,9 @@ import { selectFilterValue } from "redux/filter/selectors";
 function DropDownFilter() {
   const dispatch = useDispatch();
 
-  const defaultValues = {
+
+
+   const defaultValues = {
     filter: useSelector(selectFilterValue),
   };
 

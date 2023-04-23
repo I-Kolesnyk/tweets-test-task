@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
+import PropTypes from "prop-types";
 
 import { useUpdateUserMutation } from "redux/users/usersApi";
 import {
@@ -24,7 +25,7 @@ import {
 
 function TweetItem({ userData: { id, avatar, user, tweets, followers } }) {
   const [status, setStatus] = useState(getLocalStorage(id) || "follow");
-  const [updateUser, {isError}] = useUpdateUserMutation();
+  const [updateUser, { isError }] = useUpdateUserMutation();
   const currentStatus = getLocalStorage(id);
 
   useEffect(() => {
@@ -89,5 +90,15 @@ function TweetItem({ userData: { id, avatar, user, tweets, followers } }) {
     </Item>
   );
 }
+
+TweetItem.propTypes = {
+  userData: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    avatar: PropTypes.string.isRequired,
+    user: PropTypes.string.isRequired,
+    tweets: PropTypes.number.isRequired,
+    followers: PropTypes.number.isRequired,
+  }),
+};
 
 export default TweetItem;

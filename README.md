@@ -33,5 +33,5 @@ Project is created with:
 * @emotion/react: 11.10.6
 
 ## Team
-
-![Photo](/src/assets/filteredusers.jpg "Iryna Kolesnyk")
+<img src="/src/assets/photo.jpg" width="100" height="100"/>
+![Photo](/src/assets/photo.jpg "Iryna Kolesnyk")

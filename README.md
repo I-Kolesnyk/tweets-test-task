@@ -1,6 +1,6 @@
 # LOVELY TWEETS
 
-LOVELY TWEETS allows you to follow other users tweets.
+LOVELY TWEETS allows you to follow other users' tweets.
 
 ## How do I tweet
 

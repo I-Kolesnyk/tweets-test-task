@@ -12,13 +12,13 @@ https://i-kolesnyk.github.io/tweets-test-task/
 
 Press button `GO TWEETING`. 
 
-![Screenshot of tweets page.](https://i-kolesnyk.github.io/assets/tweetspage.jpg)
+![Screenshot of tweets page.](/src/assets/tweetspage.jpg)
 
 In the Tweets Page you can see users, to follow someone press button `FOLLOW`
 
 To select users you are following or you follow you can use filter 
 
-![Screenshot of filtered users.](https://i-kolesnyk.github.io/assets/filteredusers.jpg)
+![Screenshot of filtered users.](/src/assets/filteredusers.jpg)
 
 
 ## Technologies
@@ -31,3 +31,7 @@ Project is created with:
 * react-hook-form: 7.43.9,
 * react-icons: 4.8.0,
 * @emotion/react: 11.10.6
+
+## Team
+
+![Photo](/src/assets/filteredusers.jpg "Iryna Kolesnyk")

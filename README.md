@@ -1,8 +1,8 @@
-#LOVELY TWEETS
+# LOVELY TWEETS
 
 LOVELY TWEETS allows you to follow other users tweets.
 
-##How do I tweet
+## How do I tweet
 
  To get started follow the link
  
@@ -21,7 +21,7 @@ To select users you are following or you follow you can use filter
 ![Screenshot of filtered users.](https://i-kolesnyk.github.io/assets/filteredusers.jpg)
 
 
-##Technologies
+## Technologies
 
 Project is created with: 
 * react: 18.2.0

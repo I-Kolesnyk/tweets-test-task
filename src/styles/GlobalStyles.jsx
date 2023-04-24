@@ -15,7 +15,7 @@ export const GlobalStyles = css`
   }
   body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Montserrat,
       Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
     color: #212121;
     -webkit-font-smoothing: antialiased;

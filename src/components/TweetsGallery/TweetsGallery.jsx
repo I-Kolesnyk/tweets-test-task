@@ -1,13 +1,13 @@
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { toast } from "react-toastify";
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 
-import { useFetchUsersQuery } from "redux/users/usersApi";
+import { useFetchUsersQuery } from 'redux/users/usersApi';
 import {
   setAllUsers,
   setShownUsers,
   setTotalPages,
-} from "redux/pagination/slice";
+} from 'redux/pagination/slice';
 
 import {
   useAllUsers,
@@ -16,14 +16,14 @@ import {
   useCurrentPage,
   useFilterValue,
   useFilteredUsers,
-} from "hooks";
+} from 'hooks';
 
-import TweetItem from "components/TweetItem/TweetItem";
-import LoadMoreButton from "components/LoadMoreButton";
-import Loader from "components/Loader";
-import { ToastWrapper } from "components/ToastContainer/ToastContainer";
+import TweetItem from 'components/TweetItem/TweetItem';
+import LoadMoreButton from 'components/LoadMoreButton';
+import Loader from 'components/Loader';
+import { ToastWrapper } from 'components/ToastContainer/ToastContainer';
 
-import { List, Wrapper, Title } from "./TweetsGallery.styled";
+import { List, Wrapper, Title } from './TweetsGallery.styled';
 
 function TweetsGallery() {
   const { data, isFetching, isError, isSuccess } = useFetchUsersQuery();
@@ -52,7 +52,7 @@ function TweetsGallery() {
 
   useEffect(() => {
     if (isError) {
-      toast.error("Something has happened. Please try again later.");
+      toast.error('Something has happened. Please try again later.');
     }
   }, [isError]);
 
@@ -60,25 +60,35 @@ function TweetsGallery() {
     <>
       {isFetching && <Loader />}
 
-      {isSuccess && data.length ? (
+      {isSuccess && data.length && (
         <List>
-          {filteredUsers &&
-            filteredUsers.map((userData) => {
-              return <TweetItem key={userData.id} userData={userData} />;
-            })}
+          {filteredUsers.map(userData => {
+            return <TweetItem key={userData.id} userData={userData} />;
+          })}
         </List>
-      ) : (
+      )}
+
+      {isSuccess && !filteredUsers.length && filter === 'all' && (
         <Wrapper>
           <Title>
-            Great! You are the first user! <br/> Wait for a little for someone to join
-            you.
+            Great! You are the first user! <br /> Wait for a little for someone
+            to join you.
           </Title>
         </Wrapper>
       )}
 
-      {totalPages > 1 && currentPage < totalPages && filter === "all" && (
-        <LoadMoreButton />
-      )}
+      {isSuccess &&
+        !filteredUsers.length &&
+        (filter === 'follow' || 'following') && (
+          <Wrapper>
+            <Title>{`You have no friends you ${filter}`}</Title>
+          </Wrapper>
+        )}
+
+      {totalPages > 1 &&
+        currentPage < totalPages &&
+        filter === 'all' &&
+        isSuccess && <LoadMoreButton />}
       <ToastWrapper />
     </>
   );

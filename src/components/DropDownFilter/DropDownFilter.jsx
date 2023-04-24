@@ -1,8 +1,8 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 
 import { setFilter } from "redux/filter/slice";
-import { selectFilterValue } from "redux/filter/selectors";
+import { useFilterValue } from "hooks";
 
 import { Select } from "./DropDownFilter.styled";
 
@@ -10,7 +10,7 @@ function DropDownFilter() {
   const dispatch = useDispatch();
 
    const defaultValues = {
-    filter: useSelector(selectFilterValue),
+    filter: useFilterValue(),
   };
 
   const { register } = useForm({ defaultValues: defaultValues });

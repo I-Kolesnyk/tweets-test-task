@@ -1,9 +1,15 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = { allUsers: null, shownUsers: null, totalPages: 0, currentPage: 1, tweetsPerPage: 3 };
+const initialState = {
+  allUsers: [],
+  shownUsers: [],
+  totalPages: 0,
+  currentPage: 1,
+  tweetsPerPage: 3,
+};
 
 export const paginationSlice = createSlice({
-  name: "pagination",
+  name: 'pagination',
   initialState,
   reducers: {
     setAllUsers(state, action) {
@@ -19,9 +25,15 @@ export const paginationSlice = createSlice({
       state.currentPage = action.payload;
     },
     setTweetsPerPage(state, action) {
-        state.tweetsPerPage = action.payload;
-      },
+      state.tweetsPerPage = action.payload;
+    },
   },
 });
 
-export const { setAllUsers, setShownUsers, setTotalPages, setTweetsPerPage, setCurrentPage } = paginationSlice.actions;
+export const {
+  setAllUsers,
+  setShownUsers,
+  setTotalPages,
+  setTweetsPerPage,
+  setCurrentPage,
+} = paginationSlice.actions;

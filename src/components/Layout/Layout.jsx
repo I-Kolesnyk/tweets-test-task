@@ -34,12 +34,10 @@ function Layout() {
         </NavButton>}
         </HeaderContainer>
       </Header>
-      <Main>
-        <div>
+      <Main>     
           <Suspense fallback={<Loader />}>
             <Outlet />
-          </Suspense>
-        </div>
+          </Suspense>      
       </Main>
     </ThemeProvider>
   );

@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
+
 import bcg from "../../assets/bcg.png";
 
 const titleDynamicStyle = ({ theme }) => css`

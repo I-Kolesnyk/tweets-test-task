@@ -1,5 +1,5 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { setupListeners } from "@reduxjs/toolkit/query";
+import { configureStore } from '@reduxjs/toolkit';
+import { setupListeners } from '@reduxjs/toolkit/query';
 import {
   persistStore,
   persistReducer,
@@ -9,32 +9,34 @@ import {
   PERSIST,
   PURGE,
   REGISTER,
-} from "redux-persist";
-import storage from "redux-persist/lib/storage";
+} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
-import { filterSlice } from "./filter/slice";
-import { paginationSlice } from "./pagination/slice";
-import { usersApi } from "./users/usersApi";
+import { filterSlice } from './filter/slice';
+import { paginationSlice } from './pagination/slice';
+import { usersApi } from './users/usersApi';
 
 const filterPersistConfig = {
   key: 'filter',
   storage,
-  whitelist: ['value']
+  whitelist: ['value'],
 };
 
 const paginationPersistConfig = {
   key: 'pagination',
   storage,
-
 };
 
 export const store = configureStore({
   reducer: {
     [usersApi.reducerPath]: usersApi.reducer,
-    pagination:persistReducer(paginationPersistConfig, paginationSlice.reducer)  ,
-    filter: persistReducer(filterPersistConfig, filterSlice.reducer) ,
+    pagination: persistReducer(
+      paginationPersistConfig,
+      paginationSlice.reducer
+    ),
+    filter: persistReducer(filterPersistConfig, filterSlice.reducer),
   },
-  middleware: (getDefaultMiddleware) =>
+  middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],

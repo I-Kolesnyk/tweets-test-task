@@ -6,7 +6,7 @@ LOVELY TWEETS allows you to follow other users tweets.
 
  To get started follow the link
  
-[LOVELY TWEETS](https://i-kolesnyk.github.io/tweets-test-task/)
+[LOVELY TWEETS](https://i-kolesnyk.github.io/src/assets/tweets-test-task/)
 
 ![Screenshot of start page.](https://i-kolesnyk.github.io/assets/startpage.jpg)
 

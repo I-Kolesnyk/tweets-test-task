@@ -10,13 +10,19 @@ https://i-kolesnyk.github.io/tweets-test-task/
 
 ![Screenshot of start page.](/src/assets/startpage.jpg)
 
-Press button `GO TWEETING`.
+Press button `GO TWEETING`and go to Tweets Page.
 
 ![Screenshot of tweets page.](/src/assets/tweetspage.jpg)
 
-In the Tweets Page you can see users, to follow someone press button `FOLLOW`
+In the Tweets Page you can see users, to follow someone press button `FOLLOW`. Users you are following are highlighted in green.
 
-To select users you are following or you follow you can use filter
+![Screenshot of tweets page.](/src/assets/followingusers.jpg)
+
+To select users you are following or you follow you can use drop-down filter
+
+![Screenshot of filtered users.](/src/assets/dropdownfilter.jpg)
+
+As a result you see only following users
 
 ![Screenshot of filtered users.](/src/assets/filteredusers.jpg)
 
